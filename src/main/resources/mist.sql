@@ -103,6 +103,29 @@ INSERT INTO `arme` (`id`, `type_arme`, `type_munition`, `nom_arme`, `numero_seri
 -- --------------------------------------------------------
 
 --
+-- Structure de la table `vehicule`
+--
+
+DROP TABLE IF EXISTS `vehicule`;
+CREATE TABLE IF NOT EXISTS `vehicule` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `marque` varchar(255) NOT NULL,
+  `modele` varchar(255) NOT NULL,
+  `couleur` varchar(255) NOT NULL,
+  `immatriculation` varchar(255) NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=utf8;
+
+--
+-- Déchargement des données de la table `vehicule`
+--
+
+INSERT INTO `vehicule` (`id`, `marque`, `modele`, `couleur`, `immatriculation`) VALUES
+(4, 'Seat', 'Cordoba', 'Bleu', 'EX-154-PM'),
+(5, 'Ford', 'Mustang', 'Noir', '5849-LP-43');
+
+-- --------------------------------------------------------
+--
 -- Structure de la table `condamnation`
 --
 

@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Hôte : 127.0.0.1:3306
--- Généré le :  ven. 30 mars 2018 à 22:09
+-- Généré le :  lun. 09 avr. 2018 à 21:18
 -- Version du serveur :  5.7.19
 -- Version de PHP :  5.6.31
 
@@ -21,6 +21,35 @@ SET time_zone = "+00:00";
 --
 -- Base de données :  `mist`
 --
+
+-- --------------------------------------------------------
+
+--
+-- Structure de la table `affaire`
+--
+
+DROP TABLE IF EXISTS `affaire`;
+CREATE TABLE IF NOT EXISTS `affaire` (
+  `id` smallint(5) NOT NULL AUTO_INCREMENT,
+  `id_agent` smallint(5) NOT NULL,
+  `titre` varchar(45) NOT NULL,
+  `date_ouverture` varchar(25) NOT NULL,
+  `status` varchar(10) NOT NULL,
+  `date_cloture` varchar(25) DEFAULT NULL,
+  `description` text NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=MyISAM AUTO_INCREMENT=6 DEFAULT CHARSET=latin1;
+
+--
+-- Déchargement des données de la table `affaire`
+--
+
+INSERT INTO `affaire` (`id`, `id_agent`, `titre`, `date_ouverture`, `status`, `date_cloture`, `description`) VALUES
+(1, 1, 'Entrée Test', '23 septembre 2002', 'Ouverte', NULL, 'Test résumé'),
+(2, 1, 'Plus dure sera la chute', '23 septembre 2002', 'Ouverte', NULL, 'Résumé1'),
+(3, 2, 'Apparences trompeuses', '30 septembre 2002', 'Ouverte', NULL, 'Résumé2'),
+(4, 3, 'Le Prix de la liberté', '7 octobre 2002', 'Ouverte', NULL, 'Résumé3'),
+(5, 4, 'Les Dessous de Miami', '14 octobre 2002', 'Ouverte', NULL, 'Résumé4');
 
 -- --------------------------------------------------------
 
@@ -43,12 +72,59 @@ CREATE TABLE IF NOT EXISTS `agent` (
 --
 
 INSERT INTO `agent` (`id`, `email`, `motdepasse`, `id_profil`) VALUES
-(19, 'sev@yahoo.fr', 'azerty', 2),
+(19, 'sev@yahoo.fr', '', 2),
 (20, 'bernard.c@free.fr', 'azerty', 1),
 (21, 'rene@gmail.com', 'azert', 1);
 
 -- --------------------------------------------------------
 
+--
+-- Structure de la table `arme`
+--
+
+DROP TABLE IF EXISTS `arme`;
+CREATE TABLE IF NOT EXISTS `arme` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `type_arme` varchar(255) NOT NULL,
+  `type_munition` varchar(255) NOT NULL,
+  `nom_arme` varchar(255) NOT NULL,
+  `numero_serie_arme` varchar(255) NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=utf8;
+
+--
+-- Déchargement des données de la table `arme`
+--
+
+INSERT INTO `arme` (`id`, `type_arme`, `type_munition`, `nom_arme`, `numero_serie_arme`) VALUES
+(4, 'Semi-Automatique', '22', 'Beretta', 'EX15430984'),
+(5, 'Fusil à pompe', '12', 'Winchester', 'LP43GP543');
+
+-- --------------------------------------------------------
+
+--
+-- Structure de la table `vehicule`
+--
+
+DROP TABLE IF EXISTS `vehicule`;
+CREATE TABLE IF NOT EXISTS `vehicule` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `marque` varchar(255) NOT NULL,
+  `modele` varchar(255) NOT NULL,
+  `couleur` varchar(255) NOT NULL,
+  `immatriculation` varchar(255) NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=utf8;
+
+--
+-- Déchargement des données de la table `vehicule`
+--
+
+INSERT INTO `vehicule` (`id`, `marque`, `modele`, `couleur`, `immatriculation`) VALUES
+(4, 'Seat', 'Cordoba', 'Bleu', 'EX-154-PM'),
+(5, 'Ford', 'Mustang', 'Noir', '5849-LP-43');
+
+-- --------------------------------------------------------
 --
 -- Structure de la table `condamnation`
 --
@@ -167,6 +243,31 @@ INSERT INTO `suspect` (`id`) VALUES
 (3),
 (4);
 
+-- --------------------------------------------------------
+
+--
+-- Structure de la table `utilisateur`
+--
+
+DROP TABLE IF EXISTS `utilisateur`;
+CREATE TABLE IF NOT EXISTS `utilisateur` (
+  `id` bigint(11) NOT NULL AUTO_INCREMENT,
+  `nom` varchar(50) NOT NULL,
+  `prenom` varchar(50) NOT NULL,
+  `email` varchar(50) NOT NULL,
+  `motdepasse` varchar(60) NOT NULL,
+  `id_profil` int(11) NOT NULL,
+  PRIMARY KEY (`id`),
+  KEY `FK2rpdpv15clle66lxyvro27vuh` (`id_profil`)
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=latin1;
+
+--
+-- Déchargement des données de la table `utilisateur`
+--
+
+INSERT INTO `utilisateur` (`id`, `nom`, `prenom`, `email`, `motdepasse`, `id_profil`) VALUES
+(4, 'Jordan', 'Suzanne', 'fdq@fdz.fr', 'cvdsq', 1);
+
 --
 -- Contraintes pour les tables déchargées
 --
@@ -200,6 +301,13 @@ ALTER TABLE `document`
 ALTER TABLE `suspect`
   ADD CONSTRAINT `FKo5ym7qqdr9v09a2a8r1hbmuex` FOREIGN KEY (`id`) REFERENCES `personne` (`id`),
   ADD CONSTRAINT `fk_id_suspectt` FOREIGN KEY (`id`) REFERENCES `personne` (`id`);
+
+--
+-- Contraintes pour la table `utilisateur`
+--
+ALTER TABLE `utilisateur`
+  ADD CONSTRAINT `FK2rpdpv15clle66lxyvro27vuh` FOREIGN KEY (`id_profil`) REFERENCES `profil` (`id`),
+  ADD CONSTRAINT `fk_id_profil` FOREIGN KEY (`id_profil`) REFERENCES `profil` (`id`);
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
