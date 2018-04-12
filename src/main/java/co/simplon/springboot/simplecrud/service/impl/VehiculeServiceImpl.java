@@ -16,26 +16,29 @@ public class VehiculeServiceImpl implements VehiculeService{
 	private VehiculeRepository vehiculeRepository;
 	
 	// sql : "SELECT * FROM vehicule"
-	public List<Vehicule> getAllVehicules(){
-		return this.vehiculeRepository.findAll();
+	public List<Vehicule> getAllVehicules() throws Exception{
+		return this.vehiculeRepository.getAllVehicules();
 	}
 	
 	// sql: "DELETE FROM vehicule WHERE id = " + vehicule.getId();
-	public void deleteVehicule(Vehicule vehicule) {
-		this.vehiculeRepository.delete(vehicule);
+	public void deleteVehicule(long id) throws Exception{
+		this.vehiculeRepository.deleteVehicule(id);
 	}
 	
 	// sql: "SELECT FROM vehicule WHERE id = " + vehicule.getId();
-	public Vehicule getVehicule(int id) {
-		return this.vehiculeRepository.findOne(id);
+	public Vehicule getVehicule(long id) throws Exception{
+		return this.vehiculeRepository.getVehicule(id);
 	}
 
 	// sql: "ALTER TABLE 
-	public Vehicule addVehicule(Vehicule vehicule) {
-		return this.vehiculeRepository.save(vehicule);
+	@Override
+	public Vehicule addVehicule(Vehicule vehicule) throws Exception{
+		return this.vehiculeRepository.insertVehicule(vehicule);
 	}
-	
-	public Vehicule saveVehicule(Vehicule vehicule) {
-		return this.vehiculeRepository.save(vehicule);
+
+	@Override
+	public Vehicule updateVehicule(Vehicule vehicule) throws Exception {
+		return this.vehiculeRepository.updateVehicule(vehicule);
 	}
+
 }

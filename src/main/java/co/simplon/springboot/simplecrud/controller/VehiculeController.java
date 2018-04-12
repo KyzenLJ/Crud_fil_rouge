@@ -1,5 +1,7 @@
 package co.simplon.springboot.simplecrud.controller;
 
+import java.util.List;
+
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,51 +17,63 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import co.simplon.springboot.simplecrud.model.Vehicule;
-import co.simplon.springboot.simplecrud.repository.VehiculeRepository;
+import co.simplon.springboot.simplecrud.service.VehiculeService;
 
 @RestController
 @RequestMapping("/api")
 public class VehiculeController {
+	
 	@Autowired
-	VehiculeRepository repository;
+	VehiculeService vehiculeService;
+	
+	@CrossOrigin
+	@GetMapping("/vehicule")
+	List<Vehicule> getAllVehicules() throws Exception{
+		return vehiculeService.getAllVehicules();
+	}
+	
 	
 	@CrossOrigin
 	@GetMapping("/vehicule/{id}")
-	ResponseEntity<Vehicule> getVehiculeById(@PathVariable(value="id") int id) {
-		Vehicule vehicule = repository.findOne(id);
-		if(vehicule == null) {
-			return ResponseEntity.notFound().build();
-	}
-		return ResponseEntity.ok().body(vehicule);
+	ResponseEntity<Vehicule> getVehiculeById(@PathVariable(value="id") long id) throws Exception {
+	    Vehicule vehicule = vehiculeService.getVehicule(id);
+	    if(vehicule == null) {
+	        return ResponseEntity.notFound().build();
+	    }
+	    return ResponseEntity.ok().body(vehicule);
 	}
 	
 	@CrossOrigin
 	@PostMapping("/vehicule")
-	Vehicule addVehicule(@Valid @RequestBody Vehicule vehicule) {
-		return repository.save(vehicule);
+	Vehicule addVehicule(@Valid @RequestBody Vehicule vehicule) throws Exception{
+		return this.vehiculeService.addVehicule(vehicule);
 	}
 	
 	@CrossOrigin
 	@PutMapping("/vehicule/{id}")
-	ResponseEntity<Vehicule> UpdateVehicule(@PathVariable(value="id") int id, @Valid @RequestBody Vehicule vehicule) {
-		Vehicule vehiculeToUpdate = repository.findOne(id);
-		if(vehiculeToUpdate == null) {
+	ResponseEntity<Vehicule> updateUtilisateur(@PathVariable(value="id") long id, @Valid @RequestBody Vehicule vehicule) throws Exception{
+		Vehicule VehiculeToUpdate = this.vehiculeService.getVehicule(id);
+		if(VehiculeToUpdate == null)
 			return ResponseEntity.notFound().build();
-		}
-		Vehicule updateVehicule = repository.save(vehiculeToUpdate);
-		return ResponseEntity.ok(updateVehicule);
+		
+		// Update the mandatory attributes
+		VehiculeToUpdate.setMarque(vehicule.getMarque());
+		VehiculeToUpdate.setModele(vehicule.getModele());
+		VehiculeToUpdate.setCouleur(vehicule.getCouleur());
+		VehiculeToUpdate.setImmatriculation(vehicule.getImmatriculation());
+		
+		Vehicule updatedVehicule = this.vehiculeService.updateVehicule(VehiculeToUpdate);
+		return ResponseEntity.ok(updatedVehicule);
 	}
 	
 	@CrossOrigin
-	@DeleteMapping("vehicule/{id}")
-	ResponseEntity<Vehicule> deleteVehicule(@PathVariable(value="id") int id){
-		Vehicule vehicule = repository.findOne(id);
-		if(vehicule == null) {
+	@DeleteMapping("/vehicule/{id}")
+	ResponseEntity<Vehicule> deleteVehicule(@PathVariable(value="id") long id) throws Exception{
+		Vehicule vehicule = vehiculeService.getVehicule(id);
+		if(vehicule == null)
 			return ResponseEntity.notFound().build();
-		}
 		
-		repository.delete(vehicule);
+		vehiculeService.deleteVehicule(id);
 		return ResponseEntity.ok().build();
-		}
-
+	}
 }
