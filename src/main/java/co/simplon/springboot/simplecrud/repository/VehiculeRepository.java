@@ -1,17 +1,12 @@
 package co.simplon.springboot.simplecrud.repository;
 
-import java.util.List;
+import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.stereotype.Repository;
 
 import co.simplon.springboot.simplecrud.model.Vehicule;
 
+@Repository
+public interface VehiculeRepository extends JpaRepository<Vehicule, Long> {
 
-public interface VehiculeRepository {
-
-	
-	List<Vehicule> getAllVehicules() throws Exception;
-	Vehicule getVehicule(Long id) throws Exception;
-	void deleteVehicule(Long id) throws Exception;
-	Vehicule insertVehicule(Vehicule vehicule) throws Exception;
-	Vehicule updateVehicule(Vehicule vehicule) throws Exception;
 	
 }

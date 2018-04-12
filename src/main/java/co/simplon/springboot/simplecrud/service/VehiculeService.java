@@ -6,9 +6,9 @@ import co.simplon.springboot.simplecrud.model.Vehicule;
 
 public interface VehiculeService {
 
-	List<Vehicule> getAllVehicules() throws Exception;
-	void deleteVehicule(long id) throws Exception;
-	Vehicule getVehicule(long id) throws Exception;
-	Vehicule addVehicule(Vehicule vehicule) throws Exception;
-	Vehicule updateVehicule(Vehicule vehicule) throws Exception;
+	List<Vehicule> getAllVehicules();
+	void deleteVehicule(long id);
+	Vehicule getVehicule(long id);
+	Vehicule addVehicule(Vehicule vehicule);
+	Vehicule updateVehicule(Vehicule vehicule);
 }
