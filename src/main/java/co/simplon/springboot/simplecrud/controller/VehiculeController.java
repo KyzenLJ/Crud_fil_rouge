@@ -19,6 +19,13 @@ import org.springframework.web.bind.annotation.RestController;
 import co.simplon.springboot.simplecrud.model.Vehicule;
 import co.simplon.springboot.simplecrud.service.VehiculeService;
 
+/**
+ * 
+ * @author Alexandre NESIC
+ * Classe qui servira à communiquer avec le front
+ *
+ */
+
 @RestController
 @RequestMapping("/api")
 public class VehiculeController {

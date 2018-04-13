@@ -4,6 +4,12 @@ import java.util.List;
 
 import co.simplon.springboot.simplecrud.model.Vehicule;
 
+/**
+ * 
+ * @author NESIC Alexandre
+ * Interface qui contient les methodes du CRUD qui seront appelées par VehiculeServiceImpl
+ *
+ */
 public interface VehiculeService {
 
 	List<Vehicule> getAllVehicules();

@@ -8,10 +8,10 @@ Application spring boot basé sur une application permettant de gérer des affai
 - Avoir au préalable installer Eclipse JEE ainsi que maven (facultatif car SpringBoot en embarque un de base), disponible sur leur site officiel.
 
 - Installer un serveur Mysql (https://www.mysql.com/fr/ dans la rubrique download)
-- lors de l'installation, laissez le port d'origine (3306)
+- lors de l'installation, laisser le port d'origine (3306)
 - utiliser les identifiants de votre choix
 - Une fois installé, vérfier que le serveur Mysql est bien demarré
-- se connecter à la base en utilisant :
+- se connecter � la base en utilisant :
         ```
         -hote : localhost
         -utilisateur et mot de passe : ceux renseignés lors de l'installation du logiciel

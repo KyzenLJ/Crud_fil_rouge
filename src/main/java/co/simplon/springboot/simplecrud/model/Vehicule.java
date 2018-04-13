@@ -19,7 +19,7 @@ public class Vehicule implements Serializable{
 	
 
 	
-/**
+/** Classe qui est le miroir de la base de donnée afférente
 	 * 
 	 */
 	private static final long serialVersionUID = 6459603377773703145L;
