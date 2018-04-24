@@ -33,7 +33,7 @@ private String marque;
 private String modele;
 @Column(name="couleur")
 private String couleur;
-@Column(name="immatriculation")
+@Column(name="immatriculation", unique=true)
 private String immatriculation;
 
 

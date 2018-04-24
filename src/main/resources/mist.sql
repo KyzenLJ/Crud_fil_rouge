@@ -113,7 +113,8 @@ CREATE TABLE IF NOT EXISTS `vehicule` (
   `modele` varchar(255) NOT NULL,
   `couleur` varchar(255) NOT NULL,
   `immatriculation` varchar(255) NOT NULL,
-  PRIMARY KEY (`id`)
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `immatriculation`(`immatriculation`)
 ) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=utf8;
 
 --

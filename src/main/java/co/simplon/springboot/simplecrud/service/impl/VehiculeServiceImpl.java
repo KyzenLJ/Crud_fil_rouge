@@ -31,7 +31,7 @@ public class VehiculeServiceImpl implements VehiculeService {
 	}
 
 	@Override
-	// INSERT INTO vehicule VALUES ('valeur 1', 'valeur 2', ...);      pas besoin de nomer les colonnes, car elles sont toutes configurées en "not_null"
+	// INSERT INTO vehicule VALUES ('valeur 1', 'valeur 2', ...);      pas besoin de nommer les colonnes, car elles sont toutes configurées en "not_null"
 	// imposant de saisir une valeur pour chacune d'elles.
 	public Vehicule addVehicule(Vehicule vehicule) {
 		return this.vehiculeRepository.save(vehicule);
