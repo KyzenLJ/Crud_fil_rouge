@@ -22,7 +22,7 @@ public interface VehiculeRepository extends JpaRepository<Vehicule, Long> {
 
 //public interface VehiculeDao {
 //
-//     //creation du contrat des méthodes à utiliser, elle seront implémenté dans JDBCLivre
+//     //creation du contrat des méthodes à utiliser, elle seront implémentée dans JdbcVehicule
 //    public Vehicule<Vehicule> listVehicules() throws Exception;
 //
 //    public Vehicule getVehicule(Long id) throws Exception;
@@ -32,6 +32,8 @@ public interface VehiculeRepository extends JpaRepository<Vehicule, Long> {
 //    public Vehicule updateVehicule(Vehicule vehicule) throws Exception;
 //
 //    public void deleteVehicule(Long id) throws Exception;
+
+
 
 //@Service
 //public class JdbcVehicule implements VehiculeDao {
@@ -83,7 +85,7 @@ public interface VehiculeRepository extends JpaRepository<Vehicule, Long> {
 //    //Fabrication de l'objet avec toutes les infos à partir de la classe modèle "Vehicule"
 //    private Vehicule getVehiculeFromResultSet(ResultSet rs) throws SQLException {
 //        Vehicule vehicule = new Vehicule();
-//        //On récupère les données par colonnes
+//        //On récupère les données par colonne
 //        vehicule.setId(rs.getLong("id"));
 //        vehicule.setMarque(rs.getString("marque"));
 //        vehicule.setModele(rs.getString("modele"));
@@ -147,10 +149,10 @@ public interface VehiculeRepository extends JpaRepository<Vehicule, Long> {
 //            // Log info
 //            logSQL(pstmt);
 //
-//            // Run the the update query
+//            // Run the update query
 //            pstmt.executeUpdate();
 //
-//            // recupération de l'id genere, et maj de l'acteur avec l'id et la date de modif
+//            // recupération de l'id générée, et maj de l'acteur avec l'id et la date de modif
 //            ResultSet rs = pstmt.getGeneratedKeys();
 //
 //        } catch (SQLException e) {

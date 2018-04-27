@@ -5,13 +5,13 @@ Application spring boot basé sur une application permettant de gérer des affai
 
 ## Installations logiciels et serveurs requis
 
-- Avoir au préalable installer Eclipse JEE ainsi que maven (facultatif car SpringBoot en embarque un de base), disponible sur leur site officiel.
+- Avoir au préalable installé Eclipse JEE ainsi que maven (facultatif car SpringBoot en embarque un de base), disponible sur leur site officiel.
 
 - Installer un serveur Mysql (https://www.mysql.com/fr/ dans la rubrique download)
 - lors de l'installation, laisser le port d'origine (3306)
 - utiliser les identifiants de votre choix
 - Une fois installé, vérfier que le serveur Mysql est bien demarré
-- se connecter � la base en utilisant :
+- se connecter � la base en utilisant :
         ```
         -hote : localhost
         -utilisateur et mot de passe : ceux renseignés lors de l'installation du logiciel
@@ -31,7 +31,7 @@ Application spring boot basé sur une application permettant de gérer des affai
 
 ### Présentation api et contribution personnelle
 
-**Table vehicule basée sur un repository utilisatnt Datasource et Le driver JDBC:**
+**Table vehicule basée sur un repository utilisant hibernate (Datasource et Le driver JDBC sont en commentaire dans la classe VehiculeRepository:)**
 
 * **GET** /api/vehicule : liste les informations de l'ensemble des instances de vehicule.
  * **GET** /api/vehicule/[id] : renvoie les informations d'une instance d'objet vehicule avec son id.
@@ -42,12 +42,18 @@ Application spring boot basé sur une application permettant de gérer des affai
  
 ### Installation du projet
 
-Cloner et récuperer le projet
+installer Git
+
+Cloner et récuperer le projet sur votre ordinateur (via un git clone https://github.com/KyzenLJ/Crud_fil_rouge.git)
+
+installer java avec un jdk1.8.0_144 
+
+installer préférentiellement un environnement de développement intégré (IDE) comme eclipse ou intelliJ
 
 Importer le projet en tant que "projet maven existant"
 
 Se deplacer à la racine du projet et y ouvrir une console de ligne de commande.
-Soit en faisant un "git bash here" (si installé sur votre ordinateur), soit, taper "cmd" et valider, dans la barre de chemin de l'explorateur.
+Soit en faisant un "git bash here", soit, taper "cmd" et valider, dans la barre de chemin de l'explorateur.
 
 **Compilation**
 ```
@@ -56,13 +62,13 @@ mvn clean install
 
 Une fois la compilation effectuée et build avec succès :
 
--retourner dans eclipse
+-retourner dans l'IDE
 
 - Modifier les données dans ' application.properties' afin de faire correspondre l'identifiant et le mot de passe de connection à vôtre base de données.
 
 -lancer le projet (run as spring boot application)
 
-- Exécuter les différentes requêtes grâce au logiciel "Postman"
+- Les différentes requêtes peuvent être effectuées grâce au logiciel "Postman"
 
 
 ## Auteur
