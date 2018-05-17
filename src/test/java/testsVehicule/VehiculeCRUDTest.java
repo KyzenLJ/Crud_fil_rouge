@@ -71,7 +71,7 @@ public class VehiculeCRUDTest {
     	vehicule.setMarque("citroen");
     	vehicule.setModele("C4 picasso");
     	vehicule.setCouleur("gris");
-    	vehicule.setImmatriculation("AY-080-MP");  
+    	vehicule.setImmatriculation("");  
    	 assertNotNull("Immatriculation ne peut pas être vide !",vehicule);
     }
 }

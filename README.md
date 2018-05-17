@@ -68,14 +68,55 @@ Une fois la compilation effectuée et build avec succès :
 
 -lancer le projet (run as spring boot application)
 
-- Les différentes requêtes peuvent être effectuées grâce au logiciel "Postman"
+- Les différentes requêtes peuvent être effectuées grâce au logiciel "Postman" ou en installant le contenu du repository https://github.com/KyzenLJ/front_fil_rouge
+
+Concernant les jointures, voici un exemple visant à récupérer les affaires liées à un véhicule :
+
+	public List<Affaire> recupererAffairesDeVehicule(Long id) throws Exception {
+		Affaire affaire;
+		PreparedStatement pstmt = null;
+		ResultSet rs;
+		String sql;
+		ArrayList<Affaire> listeAffaire = new ArrayList<Affaire>();
+
+		try {
+			// Requete SQL
+			sql = " SELECT *\r\n" + 
+			"  FROM affaire\r\n" + 
+					"INNER JOIN affaire_vehicule\r\n" + 
+                        "  ON affaire.id_affaire = affaire_vehicule.id_affaire\r\n" + 
+					"INNER JOIN vehicule\r\n" + 
+						"  ON affaire_vehicule.id_vehicule = vehicule.id\r\n" + 
+						"  WHERE vehicule.id = ?;";
+		
+			pstmt = dataSource.getConnection().prepareStatement(sql);
+			pstmt.setLong(1, id);
+			// Log info
+			logSQL(pstmt);
+			// Lancement requete
+			rs = pstmt.executeQuery();
+			// resultat requete
+			while (rs.next()) {
+				affaire = recupererAffaireRS(rs);
+				listeAffaire.add(affaire);
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+			log.error("SQL Error !:" + pstmt.toString(), e);
+			throw e;
+		} finally {
+			pstmt.close();
+		}
+
+		return listeAffaire;
+	}
 
 
 ## Auteur
 
 * **NESIC Alexandre** 
 largement inspiré/pompé sur Nourry Jean-Luc.
-Les documents tels que diagramme de classe, use case et wireframe sont dans le dossier document.
+Les documents tels que diagramme de classe, use case, modélisation et schémas de base de données et wireframe sont dans le dossier documents.
 
 
 
